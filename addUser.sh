@@ -13,7 +13,7 @@ else
     if [ $flag = Y -o $flag = y -o $flag = yes -o $flag = YES ]
     then
         sudo adduser $newUserName
-        echo "用户创建完成"
+        echo "User creates entirely."
         # 在新的用户下创建.ssh文件
         sudo mkdir /home/${newUserName}/.ssh
         # 从adept用户下复制公钥至相应用户authorized_keys文件中
@@ -28,7 +28,7 @@ else
         echo "公钥权限更改完成"
     
     # 写入cuda路径
-    echo "是否写入Cuda 路径，default is no [y/n]"
+    echo "Do you want to give ${newUserName} sudo privilege? default is no [y/n]"
     read isCuda
     if [ $isCuda = Y -o $isCuda = y -o $isCuda = yes -o $isCuda = YES ]
     then
@@ -38,15 +38,16 @@ else
     
     fi
 
-    echo "是否给sudo权限，default is no [y/n]"
+    echo "Do you want to give ${newUserName} sudo privilege? default is no [y/n]"
     read isSudo
     if [ $isSudo = Y -o $isSudo = y -o $isSudo = yes -o $isSudo = YES ]
     then
         sudo adduser $newUserName sudo
+        echo "${newUserName} have sudo privileges."
     fi
 
     else
-        echo "break"
+        echo "${newUserName} doesn't have sudo privileges.
     fi
 
 fi
